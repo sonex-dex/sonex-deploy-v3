@@ -17,7 +17,6 @@ echo "Cloning v3-core ..."
 git clone https://github.com/Uniswap/v3-core.git repo
 cd repo
 echo "Moving contracts ..."
-git reset --hard d8b1c635c275d2a9450bd6a78f3fa2484fef73eb
 mv contracts/* "${V3_CORE_PATH}"
 echo "Deleting leftovers ..."
 rm -rf "${V3_CORE_PATH}/repo" # delete remaining of repo

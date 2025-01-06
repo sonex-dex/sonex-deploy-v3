@@ -1,6 +1,6 @@
 {
-  "weth": "weth address",
-  "nativeCurrencyLabel": "currency label ex:BNB",
-  "ownerAddress": "contracts owner address",
-  "v2CoreFactory": "if v2 core factory is used then set address else leave it empty"
+  "weth": "0x2337511E43b7d63FBc283900Be9fb25fc6EcC25C",
+  "nativeCurrencyLabel": "ETH",
+  "ownerAddress": "0x8eb487ddda32e182cbfa530e0d79d3b6d4dabb5b",
+  "v2CoreFactory": ""
 }

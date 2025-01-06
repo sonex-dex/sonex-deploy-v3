@@ -41,6 +41,7 @@ const chainIds = {
   "polygon-mumbai": 80001,
   sepolia: 11155111,
   anvil: 31337,
+  minato:1946
 };
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -57,6 +58,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
       break;
     case "anvil":
       jsonRpcUrl = "http://127.0.0.1:8545";
+      break;
+    case "minato":
+      jsonRpcUrl = "https://rpc.minato.soneium.org/";
       break;
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey;
@@ -203,7 +207,18 @@ const config: HardhatUserConfig = {
       polygon: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
       sepolia: process.env.ETHERSCAN_API_KEY || "",
+      minato: 'empty'
     },
+    customChains: [
+      {
+        network: 'minato',
+        chainId: 1946,
+        urls: {
+          apiURL: 'https://soneium-minato.blockscout.com/api',
+          browserURL: 'https://soneium-minato.blockscout.com',
+        },
+      },
+    ],
   },
   gasReporter: {
     currency: "USDT",
@@ -230,6 +245,7 @@ const config: HardhatUserConfig = {
     "polygon-mumbai": getChainConfig("polygon-mumbai"),
     sepolia: getChainConfig("sepolia"),
     anvil: getChainConfig("anvil"),
+    minato: getChainConfig("minato"),
   },
   paths: {
     artifacts: "./artifacts",

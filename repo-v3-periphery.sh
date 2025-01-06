@@ -17,7 +17,6 @@ echo "Cloning v3-periphery ..."
 git clone https://github.com/Uniswap/v3-periphery.git repo
 cd repo
 echo "Moving contracts ..."
-git reset --hard 697c2474757ea89fec12a4e6db16a574fe259610
 mv contracts/* "${V3_PERIPHERY_PATH}"
 echo "Deleting leftovers ..."
 rm -rf "${V3_PERIPHERY_PATH}/repo" # delete remaining of repo
