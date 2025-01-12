@@ -41,7 +41,8 @@ const chainIds = {
   "polygon-mumbai": 80001,
   sepolia: 11155111,
   anvil: 31337,
-  minato:1946
+  minato: 1946,
+  soneium: 1868,
 };
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -62,6 +63,9 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     case "minato":
       jsonRpcUrl = "https://rpc.minato.soneium.org/";
       break;
+    case "soneium":
+      jsonRpcUrl = "https://soneium.rpc.scs.startale.com?apikey=AjOWvB2Cd3zE2HXYtKpwZwBdqVcC6ZqK";
+      break;
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey;
   }
@@ -73,6 +77,7 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     },
     chainId: chainIds[chain],
     url: jsonRpcUrl,
+    gasPrice: 2000251,
   };
 }
 
@@ -207,15 +212,24 @@ const config: HardhatUserConfig = {
       polygon: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
       sepolia: process.env.ETHERSCAN_API_KEY || "",
-      minato: 'empty'
+      minato: "empty",
+      soneium: "empty",
     },
     customChains: [
       {
-        network: 'minato',
+        network: "minato",
         chainId: 1946,
         urls: {
-          apiURL: 'https://soneium-minato.blockscout.com/api',
-          browserURL: 'https://soneium-minato.blockscout.com',
+          apiURL: "https://soneium-minato.blockscout.com/api",
+          browserURL: "https://soneium-minato.blockscout.com",
+        },
+      },
+      {
+        network: "soneium",
+        chainId: 1868,
+        urls: {
+          apiURL: "https://xckc3jvrzboyo8w4.blockscout.com/api",
+          browserURL: "https://xckc3jvrzboyo8w4.blockscout.com",
         },
       },
     ],
@@ -246,6 +260,7 @@ const config: HardhatUserConfig = {
     sepolia: getChainConfig("sepolia"),
     anvil: getChainConfig("anvil"),
     minato: getChainConfig("minato"),
+    soneium: getChainConfig("soneium"),
   },
   paths: {
     artifacts: "./artifacts",
